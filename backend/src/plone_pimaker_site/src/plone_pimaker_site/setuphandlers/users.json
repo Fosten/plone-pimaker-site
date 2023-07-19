@@ -1,0 +1,19 @@
+{
+  "portal": [
+    {
+      "email": "info@pimaker.org",
+      "properties": {
+        "fullname": "Plone PiMaker Site",
+        "location": "World"
+      },
+      "groups": [
+      ],
+      "roles": [
+        "Member"
+      ],
+      "username": "plone-pimaker-site"
+    }
+  ],
+    "team": [
+  ]
+}

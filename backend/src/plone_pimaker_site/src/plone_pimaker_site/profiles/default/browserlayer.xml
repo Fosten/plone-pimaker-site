@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layers>
+  <layer interface="plone_pimaker_site.interfaces.IPLONE_PIMAKER_SITELayer"
+         name="plone_pimaker_site"
+  />
+</layers>
