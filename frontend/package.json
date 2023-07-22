@@ -3,6 +3,10 @@
   "description": "Plone 6 website for PiMaker",
   "license": "MIT",
   "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "src/addons/volto-pimaker-theme"
+  ],
   "scripts": {
     "start": "razzle start",
     "postinstall": "make omelette && make patches",
@@ -28,7 +32,8 @@
     "@eeacms/volto-accordion-block",
     "@kitconcept/volto-blocks-grid",
     "@kitconcept/volto-slider-block",
-    "@eeacms/volto-matomo"
+    "@eeacms/volto-matomo",
+    "@Fosten/volto-pimaker-theme"
   ],
   "jest": {
     "modulePathIgnorePatterns": [

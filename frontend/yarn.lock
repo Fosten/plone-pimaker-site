@@ -5,6 +5,14 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@Fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme":
+  version: 0.0.0-use.local
+  resolution: "@Fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme"
+  dependencies:
+    "@plone/scripts": "*"
+  languageName: unknown
+  linkType: soft
+
 "@ampproject/remapping@npm:^2.1.0":
   version: 2.2.0
   resolution: "@ampproject/remapping@npm:2.2.0"
@@ -2719,6 +2727,26 @@ __metadata:
     mkdirp: ^1.0.4
     rimraf: ^3.0.2
   checksum: 52dc02259d98da517fae4cb3a0a3850227bdae4939dda1980b788a7670636ca2b4a01b58df03dd5f65c1e3cb70c50fa8ce5762b582b3f499ec30ee5ce1fd9380
+  languageName: node
+  linkType: hard
+
+"@plone/scripts@npm:*":
+  version: 3.0.0
+  resolution: "@plone/scripts@npm:3.0.0"
+  dependencies:
+    babel-plugin-react-intl: 5.1.17
+    babel-preset-razzle: 4.2.17
+    chalk: 4
+    commander: 8.2.0
+    fs-extra: 10.1.0
+    git-url-parse: ^11.6.0
+    mrs-developer: "*"
+    pofile: 1.0.10
+  bin:
+    addon: addon/index.js
+    changelogupdater: changelogupdater.cjs
+    i18n: i18n.cjs
+  checksum: c5a03a68fd16f731fd40bbf94e3bc6addb4395a04049eb98fbb95f1e1ebcc2468e003149b829261a1b577d50cce032d80dc99c8e812a126621f730f6e431cb97
   languageName: node
   linkType: hard
 

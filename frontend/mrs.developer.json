@@ -1,1 +1,8 @@
-{}
+{
+    "volto-pimaker-theme": {
+        "url": "https://github.com/Fosten/volto-pimaker-theme.git",
+        "path": "src",
+        "package": "@Fosten/volto-pimaker-theme",
+        "branch": "main"
+    }
+}

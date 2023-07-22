@@ -1,6 +1,10 @@
 {
     "compilerOptions": {
-        "paths": {},
+        "paths": {
+            "@Fosten/volto-pimaker-theme": [
+                "addons/volto-pimaker-theme/src"
+            ]
+        },
         "baseUrl": "src"
     }
 }
