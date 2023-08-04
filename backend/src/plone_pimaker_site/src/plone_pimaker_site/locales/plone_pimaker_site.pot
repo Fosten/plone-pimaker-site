@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2023-07-20 03:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,3 +16,39 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone_pimaker_site\n"
+
+#: plone_pimaker_site/src/plone_pimaker_site/vocabularies/__init__.py:11
+msgid "Education"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/vocabularies/__init__.py:9
+msgid "Government"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:22
+msgid "Initial content for our website."
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/vocabularies/__init__.py:10
+msgid "NGO"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:22
+msgid "Plone PiMaker Site: Initial content"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:13
+msgid "Plone PiMaker Site: Install"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:30
+msgid "Plone PiMaker Site: Uninstall"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:13
+msgid "Policy package to install our site"
+msgstr ""
+
+#: plone_pimaker_site/src/plone_pimaker_site/profiles.zcml:30
+msgid "Uninstall Plone PiMaker Site setup."
+msgstr ""
