@@ -3,6 +3,9 @@
         "paths": {
             "@Fosten/volto-pimaker-theme": [
                 "addons/volto-pimaker-theme/src"
+            ],
+            "@Fosten/volto-home-assistant": [
+                "addons/volto-home-assistant/src"
             ]
         },
         "baseUrl": "src"

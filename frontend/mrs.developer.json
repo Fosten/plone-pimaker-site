@@ -4,5 +4,11 @@
         "path": "src",
         "package": "@Fosten/volto-pimaker-theme",
         "branch": "main"
+    },
+    "volto-home-assistant": {
+        "url": "https://github.com/Fosten/volto-home-assistant.git",
+        "path": "src",
+        "package": "@Fosten/volto-home-assistant",
+        "branch": "main"
     }
 }
