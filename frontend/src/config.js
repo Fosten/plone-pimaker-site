@@ -24,6 +24,13 @@ export default function applyConfig(config) {
     defaultLanguage: 'en_US',
     matomoSiteId: '3',
     matomoUrlBase: 'https://stats.pimaker.org/',
+    serverConfig: {
+      ...config.settings.serverConfig,
+      extractScripts: {
+        ...config.settings.serverConfig.extractScripts,
+        errorPages: true,
+      },
+    },
   };
   return config;
 }
