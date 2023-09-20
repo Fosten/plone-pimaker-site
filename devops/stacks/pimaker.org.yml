@@ -1,0 +1,94 @@
+version: "3.3"
+services:
+
+  frontend:
+    image: ghcr.io/fosten/plone-pimaker-site-frontend:latest
+    networks:
+      - traefik-public
+      - traefik-pimaker
+    environment:
+      RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
+    ports:
+      - "3004:3000"
+    depends_on:
+      - backend
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.type == pimakerapp
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        # SERVICE
+        - traefik.http.services.pimaker-frontend.loadbalancer.server.port=3000
+        # HOSTS: Main
+        - traefik.http.routers.pimaker-frontend.rule=Host(`pimaker.org`)
+        - traefik.http.routers.pimaker-frontend.entrypoints=websecure
+        - traefik.http.routers.pimaker-frontend.tls=true
+        - traefik.http.routers.pimaker-frontend.tls.certresolver=mydnschallenge
+        - traefik.http.routers.pimaker-frontend.service=pimaker-frontend
+        - traefik.http.routers.pimaker-frontend.middlewares=gzip
+
+  backend:
+    image: ghcr.io/fosten/plone-pimaker-site-backend:latest
+    networks:
+      - traefik-public
+      - traefik-pimaker
+    environment:
+      RELSTORAGE_DSN: "dbname='${DB_NAME:-plone}' user='${DB_USER:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-plone}'"
+    ports:
+      - "8084:8080"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.type == pimakerapp
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        # SERVICE
+        - traefik.http.services.pimaker-backend.loadbalancer.server.port=8080
+        # MIDDLEWARES
+        ### basic_auth Authentication ClassicUI & Zope
+        - traefik.http.middlewares.pimaker-backend-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        - traefik.http.middlewares.pimaker-zope-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        ### Backend ++api++ VHM
+        - "traefik.http.middlewares.pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)"
+        - "traefik.http.middlewares.pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/pimaker.org/Plone/++api++/VirtualHostRoot/$$3"
+        - "traefik.http.middlewares.pimaker-vhm.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)"
+        - "traefik.http.middlewares.pimaker-vhm.replacepathregex.replacement=/VirtualHostBase/https/pimaker.org/Plone/++api++/VirtualHostRoot/$$1"
+        ### Backend ClassicUI VHM
+        - "traefik.http.middlewares.pimaker-vhm-classicui.replacepathregex.regex=^/ClassicUI($$|/.*)"
+        - "traefik.http.middlewares.pimaker-vhm-classicui.replacepathregex.replacement=/VirtualHostBase/https/pimaker.org/Plone/VirtualHostRoot/_vh_ClassicUI/$$1"
+        ### Backend zopeadmin root path
+        - "traefik.http.middlewares.pimaker-root-zopeadmin.replacepathregex.regex=^/zopeadmin($$|/.*)"
+        - "traefik.http.middlewares.pimaker-root-zopeadmin.replacepathregex.replacement=/VirtualHostBase/https/pimaker.org/VirtualHostRoot/_vh_ClassicUI/manage_main/$$1"
+
+        # ROUTES
+        ## pimaker.org API
+        - traefik.http.routers.pimaker-backend.rule=Host(`pimaker.org`) && (PathPrefix(`/++api++`))
+        - traefik.http.routers.pimaker-backend.entrypoints=websecure
+        - traefik.http.routers.pimaker-backend.tls=true
+        - traefik.http.routers.pimaker-backend.service=pimaker-backend
+        - traefik.http.routers.pimaker-backend.middlewares=gzip,pimaker-vhm-cleanup,pimaker-vhm
+        ### pimkaker.org /ClassicUI - protected with basic auth (prevent SEOs from crawl it)
+        - traefik.http.routers.pimaker-classicui.rule=Host(`pimaker.org`) && (PathPrefix(`/ClassicUI`))
+        - traefik.http.routers.pimaker-classicui.entrypoints=websecure
+        - traefik.http.routers.pimaker-classicui.tls=true
+        - traefik.http.routers.pimaker-classicui.service=pimaker-backend
+        - traefik.http.routers.pimaker-classicui.middlewares=gzip,pimaker-backend-auth,pimaker-vhm-classicui
+        ### pimaker.org /zope - protected with basic auth (prevent unauthorized acess)
+        - traefik.http.routers.pimaker-zopeadmin.rule=Host(`pimaker.org`) && (PathPrefix(`/zopeadmin`))
+        - traefik.http.routers.pimaker-zopeadmin.entrypoints=websecure
+        - traefik.http.routers.pimaker-zopeadmin.tls=true
+        - traefik.http.routers.pimaker-zopeadmin.service=pimaker-backend
+        - traefik.http.routers.pimaker-zopeadmin.middlewares=gzip,pimaker-zope-auth,pimaker-root-zopeadmin
+
+networks:
+  traefik-public:
+    external: true
+  traefik-pimaker:
+    driver: overlay
