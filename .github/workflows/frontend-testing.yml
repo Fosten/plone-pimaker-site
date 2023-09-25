@@ -2,6 +2,8 @@ name: Frontend testing CI
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "frontend/**"
       - ".github/workflows/frontend-testing.yml"

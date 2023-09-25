@@ -2,6 +2,8 @@ name: Backend testing CI
 
 on:
   push:
+    branches:
+      - main
     paths:
       - "backend/**"
       - ".github/workflows/backend-testing.yml"
