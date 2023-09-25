@@ -1,4 +1,4 @@
-name: Release and deploy tag to live website pimaker.org
+name: Release production CI
 
 on:
   workflow_dispatch:
