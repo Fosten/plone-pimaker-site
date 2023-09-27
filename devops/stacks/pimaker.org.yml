@@ -2,12 +2,12 @@ version: "3.3"
 services:
 
   frontend:
-    image: ghcr.io/fosten/plone-pimaker-site-frontend:latest
+    image: ghcr.io/fosten/plone-pimaker-site-frontend:${STACK_PARAM:-latest}
     networks:
       - traefik-public
       - traefik-pimaker
     environment:
-      RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
+      RAZZLE_INTERNAL_API_PATH: http://pimaker-org_backend:8080/Plone
     ports:
       - "3004:3000"
     depends_on:
@@ -32,7 +32,7 @@ services:
         - traefik.http.routers.pimaker-frontend.middlewares=gzip
 
   backend:
-    image: ghcr.io/fosten/plone-pimaker-site-backend:latest
+    image: ghcr.io/fosten/plone-pimaker-site-backend:${STACK_PARAM:-latest}
     networks:
       - traefik-public
       - traefik-pimaker
