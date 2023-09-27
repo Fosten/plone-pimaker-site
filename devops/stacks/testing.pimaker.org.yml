@@ -25,7 +25,7 @@ services:
         - traefik.http.services.testing_pimaker-frontend.loadbalancer.server.port=3000
         # MIDDLEWARES
         ### ClassicUI Access Authentication
-        - traefik.http.middlewares.testing_pimaker-frontend-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        - traefik.http.middlewares.testing_pimaker-frontend-auth.basicauth.users=testing:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
         # HOSTS: Main
         - traefik.http.routers.testing_pimaker-frontend.rule=Host(`testing.pimaker.org`)
         - traefik.http.routers.testing_pimaker-frontend.entrypoints=websecure
