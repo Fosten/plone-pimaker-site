@@ -22,11 +22,6 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v4.1.1
 
-      - name: Update Global Yarn
-        run: |
-          corepack enable
-          corepack prepare yarn@3.2.3 --activate
-
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4.0.2
         with:
@@ -38,7 +33,6 @@ jobs:
         run: make install
 
       - name: Lint
-        if: ${{ success() || failure() }}
         run: yarn run lint:ci
 
   prettier:
