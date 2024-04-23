@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  node-version: 18.x
+  node-version: 20.x
 
 jobs:
 
