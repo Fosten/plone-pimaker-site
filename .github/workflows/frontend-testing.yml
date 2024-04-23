@@ -22,13 +22,15 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v4.1.1
 
-      - name: Corepack enable
+      - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ env.node-version }}
+
+      - name: Corepack enable
         run: corepack enable
 
-      - name: Use Node.js ${{ env.node-version }}
+      - name: Setup cache
         uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ env.node-version }}
