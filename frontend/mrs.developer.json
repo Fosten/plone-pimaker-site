@@ -2,13 +2,13 @@
     "volto-pimaker-theme": {
         "url": "https://github.com/Fosten/volto-pimaker-theme.git",
         "path": "src",
-        "package": "@Fosten/volto-pimaker-theme",
+        "package": "@fosten/volto-pimaker-theme",
         "branch": "main"
     },
     "volto-home-assistant": {
         "url": "https://github.com/Fosten/volto-home-assistant.git",
         "path": "src",
-        "package": "@Fosten/volto-home-assistant",
+        "package": "@fosten/volto-home-assistant",
         "branch": "main"
     }
 }

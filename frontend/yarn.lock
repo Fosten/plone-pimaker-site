@@ -5,22 +5,6 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@Fosten/volto-home-assistant@workspace:src/addons/volto-home-assistant":
-  version: 0.0.0-use.local
-  resolution: "@Fosten/volto-home-assistant@workspace:src/addons/volto-home-assistant"
-  dependencies:
-    "@plone/scripts": "*"
-  languageName: unknown
-  linkType: soft
-
-"@Fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme":
-  version: 0.0.0-use.local
-  resolution: "@Fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme"
-  dependencies:
-    "@plone/scripts": "*"
-  languageName: unknown
-  linkType: soft
-
 "@aashutoshrathi/word-wrap@npm:^1.2.3":
   version: 1.2.6
   resolution: "@aashutoshrathi/word-wrap@npm:1.2.6"
@@ -2407,6 +2391,22 @@ __metadata:
   checksum: 031b9695f3caa94beee49c11c9dae98a6681e58d603e445f3e097be97991380bce4007ecb3f3689cc74399174293796c2a9806ed713b3d86c7af52ede750b37e
   languageName: node
   linkType: hard
+
+"@fosten/volto-home-assistant@workspace:src/addons/volto-home-assistant":
+  version: 0.0.0-use.local
+  resolution: "@fosten/volto-home-assistant@workspace:src/addons/volto-home-assistant"
+  dependencies:
+    "@plone/scripts": "*"
+  languageName: unknown
+  linkType: soft
+
+"@fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme":
+  version: 0.0.0-use.local
+  resolution: "@fosten/volto-pimaker-theme@workspace:src/addons/volto-pimaker-theme"
+  dependencies:
+    "@plone/scripts": "*"
+  languageName: unknown
+  linkType: soft
 
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.3
