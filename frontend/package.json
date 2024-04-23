@@ -141,7 +141,7 @@
     "not dead"
   ],
   "engines": {
-    "node": "^16 || ^18"
+    "node": "^18 || ^20"
   },
   "dependencies": {
     "@eeacms/volto-accordion-block": "*",
