@@ -19,10 +19,10 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "paths": {
-            "@Fosten/volto-pimaker-theme": [
+            "volto-pimaker-theme": [
                 "addons/volto-pimaker-theme/src"
             ],
-            "@Fosten/volto-home-assistant": [
+            "volto-home-assistant": [
                 "addons/volto-home-assistant/src"
             ]
         },
