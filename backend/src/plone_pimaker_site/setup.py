@@ -56,7 +56,7 @@ setup(
             "pytest-plone>=0.2.0",
             "pytest-cov",
             "pytest",
-            "gocept.pytestlayer",
+            "zope.pytestlayer",
             "zest.releaser[recommended]",
             "plone.app.testing[robot]>=7.0.0a3",
             "plone.restapi[test]",
