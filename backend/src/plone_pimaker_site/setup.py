@@ -48,7 +48,8 @@ setup(
         "Plone",
         "prettyconf",
         "plone.api",
-        "collective.volto.formsupport",
+        "collective.volto.formsupport[honeypot]",
+        "collective.honeypot",
     ],
     extras_require={
         "test": [
