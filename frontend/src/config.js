@@ -21,7 +21,7 @@ export default function applyConfig(config) {
     ...config.settings,
     isMultilingual: false,
     supportedLanguages: ['en'],
-    defaultLanguage: 'en_US',
+    defaultLanguage: 'en-us',
     matomoSiteId: '3',
     matomoUrlBase: 'https://stats.pimaker.org/',
     serverConfig: {
