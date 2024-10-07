@@ -56,8 +56,8 @@ services:
         - traefik.http.services.pimaker-backend.loadbalancer.server.port=8080
         # MIDDLEWARES
         ### basic_auth Authentication ClassicUI & Zope
-        - traefik.http.middlewares.pimaker-backend-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
-        - traefik.http.middlewares.pimaker-zope-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        - traefik.http.middlewares.pimaker-backend-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
+        - traefik.http.middlewares.pimaker-zope-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
         ### Backend ++api++ VHM
         - "traefik.http.middlewares.pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)"
         - "traefik.http.middlewares.pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/pimaker.org/Plone/++api++/VirtualHostRoot/$$3"

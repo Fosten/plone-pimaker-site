@@ -28,7 +28,7 @@ services:
         - traefik.http.services.testing_pimaker-frontend.loadbalancer.server.port=3000
         # MIDDLEWARES
         ### ClassicUI Access Authentication
-        - traefik.http.middlewares.testing_pimaker-frontend-auth.basicauth.users=testing:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        - traefik.http.middlewares.testing_pimaker-frontend-auth.basicauth.users=testing:${TRAEFIK_HASHED_PASSWORD}
         # HOSTS: Main
         - traefik.http.routers.testing_pimaker-frontend.rule=Host(`testing.pimaker.org`)
         - traefik.http.routers.testing_pimaker-frontend.entrypoints=websecure
@@ -59,8 +59,8 @@ services:
         - traefik.http.services.testing_pimaker-backend.loadbalancer.server.port=8080
         # MIDDLEWARES
         ### basic_auth Authentication ClassicUI & Zope
-        - traefik.http.middlewares.testing_pimaker-backend-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
-        - traefik.http.middlewares.testing_pimaker-zope-auth.basicauth.users=admin:$$2y$$05$$hGP72w.Rgky4RK7FrN9km.UpdwwHqB8gJNp8TQ4s4qDK8LxjfISl6
+        - traefik.http.middlewares.testing_pimaker-backend-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
+        - traefik.http.middlewares.testing_pimaker-zope-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
         ### Backend ++api++ VHM
         - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)"
         - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$3"
