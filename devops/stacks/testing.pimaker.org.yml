@@ -63,16 +63,16 @@ services:
         - traefik.http.middlewares.testing_pimaker-backend-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
         - traefik.http.middlewares.testing_pimaker-zope-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
         ### Backend ++api++ VHM
-        - traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)
-        - traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$3
-        - traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)
-        - traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$1
+        - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)"
+        - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$3"
+        - "traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)"
+        - "traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$1"
         ### Backend ClassicUI VHM
-        - traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.regex=^/ClassicUI($$|/.*)
-        - traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/VirtualHostRoot/_vh_ClassicUI/$$1
+        - "traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.regex=^/ClassicUI($$|/.*)"
+        - "traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/VirtualHostRoot/_vh_ClassicUI/$$1"
         ### Backend zopeadmin root path
-        - traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.regex=^/zopeadmin($$|/.*)
-        - traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/VirtualHostRoot/_vh_ClassicUI/manage_main/$$1
+        - "traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.regex=^/zopeadmin($$|/.*)"
+        - "traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/VirtualHostRoot/_vh_ClassicUI/manage_main/$$1"
 
         # ROUTES
         ## testing.pimaker.org API
