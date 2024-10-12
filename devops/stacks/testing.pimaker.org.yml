@@ -8,6 +8,7 @@ services:
       - traefik-testing_pimaker
     environment:
       RAZZLE_INTERNAL_API_PATH: http://testing-pimaker-org_backend:8080/Plone
+      RAZZLE_API_PATH: https://testing.pimaker.org
       RAZZLE_HOMEASSISTANT_API_HOST: ${RAZZLE_HOMEASSISTANT_API_HOST}
       RAZZLE_HOMEASSISTANT_API_PORT: ${RAZZLE_HOMEASSISTANT_API_PORT}
       RAZZLE_HOMEASSISTANT_ACCESS_TOKEN: ${RAZZLE_HOMEASSISTANT_ACCESS_TOKEN}
