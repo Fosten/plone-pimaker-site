@@ -12,8 +12,6 @@ services:
       RAZZLE_HOMEASSISTANT_API_HOST: ${RAZZLE_HOMEASSISTANT_API_HOST}
       RAZZLE_HOMEASSISTANT_API_PORT: ${RAZZLE_HOMEASSISTANT_API_PORT}
       RAZZLE_HOMEASSISTANT_ACCESS_TOKEN: ${RAZZLE_HOMEASSISTANT_ACCESS_TOKEN}
-    ports:
-      - 3004:3000
     depends_on:
       - backend
     deploy:
@@ -42,8 +40,6 @@ services:
       - traefik-pimaker
     environment:
       RELSTORAGE_DSN: "dbname='${DB_NAME:-plone}' user='${DB_USER:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-plone}'"
-    ports:
-      - 8084:8080
     deploy:
       replicas: 1
       placement:
