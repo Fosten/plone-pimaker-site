@@ -1,9 +1,53 @@
-# 1.0.0
+# Changelog
 
-- Add release stack [fosten]
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+# 1.2.0 (2024-10-14)
+
+- Update CHANGELOG.md [fosten]
+- Remove ports [fosten]
+- Add hashed pw var [fosten]
+- Add volto-banner and eea.banner [fosten]
+- Add collective.listmonk [fosten]
+- Add volto-columns-block [fosten]
+- Use en-us language variant [fosten]
+- FromAsCasing match [fosten]
+- Add collective.honeypot [fosten]
+- Bump Plone from 6.0.11.1 to 6.0.13 [fosten]
+- Remove py38 and py39, add py312 [fosten]
+- Bump Volto from 18.0.0-alpha.32 to 18.0.0-alpha.42 [fosten]
+
+# 1.1.0 (2024-05-24)
+
+- Change gocept.pytestlayer to zope.pytestlayer [fosten]
+- Add collective.volto.formsupport, volto-form-block, volto-subblocks [fosten]
+- Bump Volto from 17.15.5 to 18.0.0-alpha.32 [fosten]
+- Bump Plone from 6.0.10.1 to 6.0.11.1 [fosten]
+- Remove capital letter @Fosten to @fosten [fosten]
+- Add Typescript [fosten]
+- Bump Volto from 17.0.0-alpha.23 to 17.15.5 [fosten]
+- Add dependabot for automatic updates to Github Actions [fosten]
+
+# 1.0.0 (2023-09-27)
+
+- Add homeassistant env_vars [fosten]
+- Update GHA workflow files [fosten]
 - Add testing stack [fosten]
-- Add docker-stack-deploy GHA [fosten]
+- Add release stack [fosten]
+- Add kitconcept/docker-stack-deploy GHA [fosten]
 
-# 2023-07-19
+# 0.2.0 (2023-08-18)
+- Enable JS on 404 [fosten]
+- Add matomoSiteId, matomoUrlBase [fosten]
+- Override favicon [fosten]
+- Bump node from 16 to 18 [fosten]
+- Bump Volto from 16.21.3 to 17.0.0-alpha.23 [fosten]
+- Bump Plone from 6.0.6 to 6.0.10.1 [fosten]
+- Add volto-pimaker-theme and volto-home-assistant via mrs.developer [fosten]
 
-- Initial version [fosten]
+# 0.1.0 (2023-07-19)
+
+- Initial commit [fosten]
