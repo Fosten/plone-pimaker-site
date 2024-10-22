@@ -75,7 +75,7 @@ services:
 
         # Routes
         ## /++api++ (Internal)
-        - traefik.http.routers.testing_pimaker-backend-api.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/++api++`)) && Headers(`X-Varnish-Routed`, `1`)
+        - traefik.http.routers.testing_pimaker-backend-api.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/++api++`))
         - traefik.http.routers.testing_pimaker-backend-api.entrypoints=websecure
         - traefik.http.routers.testing_pimaker-backend-api.tls=true
         - traefik.http.routers.testing_pimaker-backend-api.service=testing_pimaker-backend
