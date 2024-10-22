@@ -1,14 +1,21 @@
 {
-    "volto-pimaker-theme": {
-        "url": "https://github.com/Fosten/volto-pimaker-theme.git",
-        "path": "src",
-        "package": "@fosten/volto-pimaker-theme",
-        "branch": "main"
-    },
-    "volto-home-assistant": {
-        "url": "https://github.com/Fosten/volto-home-assistant.git",
-        "path": "src",
-        "package": "@fosten/volto-home-assistant",
-        "branch": "main"
-    }
+  "core": {
+    "output": "./",
+    "package": "@plone/volto",
+    "url": "git@github.com:plone/volto.git",
+    "https": "https://github.com/plone/volto.git",
+    "tag": "18.0.0-alpha.46"
+  },
+  "volto-pimaker-theme": {
+    "develop": true,
+    "output": "packages",
+    "url": "git@github.com:fosten/volto-pimaker-theme.git",
+    "https": "https://github.com/fosten/volto-pimaker-theme.git"
+  },
+  "volto-home-assistant": {
+    "develop": true,
+    "output": "packages",
+    "url": "git@github.com:fosten/volto-home-assistant.git",
+    "https": "https://github.com/fosten/volto-home-assistant.git"
+  }
 }

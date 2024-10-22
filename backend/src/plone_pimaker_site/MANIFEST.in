@@ -1,6 +1,0 @@
-graft src/plone_pimaker_site
-graft docs
-include *.rst
-include *.md
-include *.cfg
-global-exclude *.pyc

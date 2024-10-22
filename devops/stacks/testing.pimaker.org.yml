@@ -1,11 +1,9 @@
+---
 version: '3.9'
 services:
 
   frontend:
     image: ghcr.io/fosten/plone-pimaker-site-frontend:${STACK_PARAM:-latest}
-    networks:
-      - traefik-public
-      - traefik-testing_pimaker
     environment:
       RAZZLE_INTERNAL_API_PATH: http://testing-pimaker-org_backend:8080/Plone
       RAZZLE_API_PATH: https://testing.pimaker.org
@@ -14,6 +12,10 @@ services:
       RAZZLE_HOMEASSISTANT_ACCESS_TOKEN: ${RAZZLE_HOMEASSISTANT_ACCESS_TOKEN}
     depends_on:
       - backend
+    networks:
+      - traefik-public
+      - traefik-testing_pimaker
+
     deploy:
       replicas: 1
       placement:
@@ -21,20 +23,24 @@ services:
           - node.labels.type == pimakerapp
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        # SERVICE
+        # Service
         - traefik.http.services.testing_pimaker-frontend.loadbalancer.server.port=3000
-        # MIDDLEWARES
-        ### ClassicUI Access Authentication
+        # Middlewares
+        ## Basic Authentication
+        ### Note: all dollar signs in the hash need to be doubled for escaping.
+        ### To create user:password pair, it's possible to use this command:
+        ### echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
+        ### Defaults to admin:admin
         - traefik.http.middlewares.testing_pimaker-frontend-auth.basicauth.users=testing:${TRAEFIK_HASHED_PASSWORD}
-        # HOSTS: Main
+        # Routers
+        ## / (Internal)
         - traefik.http.routers.testing_pimaker-frontend.rule=Host(`testing.pimaker.org`)
         - traefik.http.routers.testing_pimaker-frontend.entrypoints=websecure
         - traefik.http.routers.testing_pimaker-frontend.tls=true
         - traefik.http.routers.testing_pimaker-frontend.tls.certresolver=mydnschallenge
         - traefik.http.routers.testing_pimaker-frontend.service=testing_pimaker-frontend
-        - traefik.http.routers.testing_pimaker-frontend.middlewares=gzip,testing_pimaker-frontend-auth
+        - traefik.http.routers.testing_pimaker-frontend.middlewares=testing_pimaker-frontend-auth
 
   backend:
     image: ghcr.io/fosten/plone-pimaker-site-backend:${STACK_PARAM:-latest}
@@ -42,7 +48,7 @@ services:
       - traefik-public
       - traefik-testing_pimaker
     environment:
-      RELSTORAGE_DSN: "dbname='${TESTING_DB_NAME:-plone}' user='${TESTING_DB_USER:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-plone}'"
+      RELSTORAGE_DSN: "dbname='${TESTING_DB_NAME:-plone}' user='${TESTING_DB_USER:-plone}' host='${DB_HOST:-db}' password='${DB_PASSWORD:-plone}' port='${DB_PORT:-5432}'"
     deploy:
       replicas: 1
       placement:
@@ -50,48 +56,40 @@ services:
           - node.labels.type == pimakerapp
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        # SERVICE
+        # Services
         - traefik.http.services.testing_pimaker-backend.loadbalancer.server.port=8080
-        # MIDDLEWARES
-        ### basic_auth Authentication ClassicUI & Zope
+        # Middlewares
+        ## VHM rewrite /++api++/
+        - "traefik.http.middlewares.testing_pimaker-backend-vhm-api.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)"
+        - "traefik.http.middlewares.testing_pimaker-backend-vhm-api.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot$$1"
+        ## VHM rewrite /ClassicUI/
+        - "traefik.http.middlewares.testing_pimaker-backend-vhm-classic.replacepathregex.regex=^/ClassicUI($$|/.*)"
+        - "traefik.http.middlewares.testing_pimaker-backend-vhm-classic.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/VirtualHostRoot/_vh_ClassicUI$$1"
+        ## Basic Authentication
+        ### Note: all dollar signs in the hash need to be doubled for escaping.
+        ### To create user:password pair, it's possible to use this command:
+        ### echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
+        ### Defaults to admin:admin
         - traefik.http.middlewares.testing_pimaker-backend-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
-        - traefik.http.middlewares.testing_pimaker-zope-auth.basicauth.users=admin:${TRAEFIK_HASHED_PASSWORD}
-        ### Backend ++api++ VHM
-        - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.regex=^/((\\+\\+api\\+\\+/){1,})($$|.*)"
-        - "traefik.http.middlewares.testing_pimaker-vhm-cleanup.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$3"
-        - "traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.regex=^/\\+\\+api\\+\\+($$|/.*)"
-        - "traefik.http.middlewares.testing_pimaker-vhm.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/++api++/VirtualHostRoot/$$1"
-        ### Backend ClassicUI VHM
-        - "traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.regex=^/ClassicUI($$|/.*)"
-        - "traefik.http.middlewares.testing_pimaker-vhm-classicui.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/Plone/VirtualHostRoot/_vh_ClassicUI/$$1"
-        ### Backend zopeadmin root path
-        - "traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.regex=^/zopeadmin($$|/.*)"
-        - "traefik.http.middlewares.testing_pimaker-root-zopeadmin.replacepathregex.replacement=/VirtualHostBase/https/testing.pimaker.org/VirtualHostRoot/_vh_ClassicUI/manage_main/$$1"
 
-        # ROUTES
-        ## testing.pimaker.org API
-        - traefik.http.routers.testing_pimaker-backend.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/++api++`))
-        - traefik.http.routers.testing_pimaker-backend.entrypoints=websecure
-        - traefik.http.routers.testing_pimaker-backend.tls=true
-        - traefik.http.routers.testing_pimaker-backend.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-backend.middlewares=gzip,testing_pimaker-vhm-cleanup,testing_pimaker-vhm
-        ### testing.pimaker.org /ClassicUI - protected with basic auth (prevent SEOs from crawl it)
-        - traefik.http.routers.testing_pimaker-classicui.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/ClassicUI`))
-        - traefik.http.routers.testing_pimaker-classicui.entrypoints=websecure
-        - traefik.http.routers.testing_pimaker-classicui.tls=true
-        - traefik.http.routers.testing_pimaker-classicui.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-classicui.middlewares=gzip,testing_pimaker-backend-auth,testing_pimaker-vhm-classicui
-        ### testing.pimaker.org /zope - protected with basic auth (prevent unauthorized acess)
-        - traefik.http.routers.testing_pimaker-zopeadmin.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/zopeadmin`))
-        - traefik.http.routers.testing_pimaker-zopeadmin.entrypoints=websecure
-        - traefik.http.routers.testing_pimaker-zopeadmin.tls=true
-        - traefik.http.routers.testing_pimaker-zopeadmin.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-zopeadmin.middlewares=gzip,testing_pimaker-zope-auth,testing_pimaker-root-zopeadmin
+        # Routes
+        ## /++api++ (Internal)
+        - traefik.http.routers.testing_pimaker-backend-api.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/++api++`)) && Headers(`X-Varnish-Routed`, `1`)
+        - traefik.http.routers.testing_pimaker-backend-api.entrypoints=websecure
+        - traefik.http.routers.testing_pimaker-backend-api.tls=true
+        - traefik.http.routers.testing_pimaker-backend-api.service=testing_pimaker-backend
+        - traefik.http.routers.testing_pimaker-backend-api.middlewares=testing_pimaker-backend-vhm-api
+        ## /ClassicUI
+        - traefik.http.routers.testing_pimaker-backend-classic.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/ClassicUI`))
+        - traefik.http.routers.testing_pimaker-backend-classic.entrypoints=websecure
+        - traefik.http.routers.testing_pimaker-backend-classic.tls=true
+        - traefik.http.routers.testing_pimaker-backend-classic.service=testing_pimaker-backend
+        - traefik.http.routers.testing_pimaker-backend-classic.middlewares=gzip,testing_pimaker-backend-auth,testing_pimaker-backend-vhm-classic
 
 networks:
   traefik-public:
     external: true
   traefik-testing_pimaker:
+    internal: true
     driver: overlay

@@ -1,0 +1,53 @@
+---
+version: '3.9'
+
+services:
+  purger:
+    image: ghcr.io/kitconcept/cluster-purger:latest
+    environment:
+      PURGER_SERVICE_NAME: varnish
+      PURGER_SERVICE_PORT: 80
+      PURGER_PUBLIC_SITES: "['pimaker.org']"
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 5s
+        order: start-first
+
+  varnish:
+    image: ghcr.io/fosten/plone-pimaker-site-varnish:${STACK_PARAM:-latest}
+    command:
+      - '-p'
+      - 'nuke_limit=2000'
+      - '-p'
+      - 'workspace_client=192k'
+      - '-p'
+      - 'workspace_backend=192k'
+    depends_on:
+      - traefik
+      - frontend
+      - backend
+    networks:
+      - traefik-public
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+        order: start-first
+      labels:
+        - traefik.enable=true
+        - traefik.constraint-label=public
+        # Services
+        - traefik.http.services.svc-varnish.loadbalancer.server.port=80
+        # Routers
+        ## Router: Varnish Public
+        - traefik.http.routers.rt-varnish-public.rule=Host(`pimaker.org`)
+        - traefik.http.routers.rt-varnish-public.entrypoints=https
+        - traefik.http.routers.rt-varnish-public.tls=true
+        - traefik.http.routers.rt-varnish-public.tls.certresolver=le
+        - traefik.http.routers.rt-varnish-public.service=svc-varnish
+        - traefik.http.routers.rt-varnish-public.middlewares=gzip

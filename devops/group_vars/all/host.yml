@@ -1,3 +1,0 @@
----
-hostname: 'plone-pimaker-site'
-fqdn: '{{ hostname }}.localhost'
