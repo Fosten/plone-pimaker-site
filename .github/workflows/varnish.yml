@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - "devops/varnish/**"
-      - ".github/workflows/varnish.yml"
   workflow_dispatch:
 
 env:
