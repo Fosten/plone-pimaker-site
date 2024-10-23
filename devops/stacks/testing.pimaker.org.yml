@@ -76,13 +76,13 @@ services:
 
         # Routes
         ## /++api++ (Internal)
-        - traefik.http.routers.testing_pimaker-backend-api.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/++api++`))
+        - traefik.http.routers.testing_pimaker-backend-api.rule=Host(`testing.pimaker.org`) && PathPrefix(`/++api++`)
         - traefik.http.routers.testing_pimaker-backend-api.entrypoints=websecure
         - traefik.http.routers.testing_pimaker-backend-api.tls=true
         - traefik.http.routers.testing_pimaker-backend-api.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-backend-api.middlewares=testing_pimaker-backend-vhm-api
+        - traefik.http.routers.testing_pimaker-backend-api.middlewares=gzip,testing_pimaker-backend-vhm-api
         ## /ClassicUI
-        - traefik.http.routers.testing_pimaker-backend-classic.rule=Host(`testing.pimaker.org`) && (PathPrefix(`/ClassicUI`))
+        - traefik.http.routers.testing_pimaker-backend-classic.rule=Host(`testing.pimaker.org`) && PathPrefix(`/ClassicUI`)
         - traefik.http.routers.testing_pimaker-backend-classic.entrypoints=websecure
         - traefik.http.routers.testing_pimaker-backend-classic.tls=true
         - traefik.http.routers.testing_pimaker-backend-classic.service=testing_pimaker-backend

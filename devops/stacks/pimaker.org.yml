@@ -33,6 +33,7 @@ services:
         - traefik.http.routers.pimaker-frontend.tls=true
         - traefik.http.routers.pimaker-frontend.tls.certresolver=mydnschallenge
         - traefik.http.routers.pimaker-frontend.service=pimaker-frontend
+        - traefik.http.routers.pimaker-frontend.middlewares=gzip
 
   backend:
     image: ghcr.io/fosten/plone-pimaker-site-backend:${STACK_PARAM:-latest}
@@ -72,7 +73,7 @@ services:
         - traefik.http.routers.pimaker-backend-api.entrypoints=websecure
         - traefik.http.routers.pimaker-backend-api.tls=true
         - traefik.http.routers.pimaker-backend-api.service=pimaker-backend
-        - traefik.http.routers.pimaker-backend-api.middlewares=pimaker-backend-vhm-api
+        - traefik.http.routers.pimaker-backend-api.middlewares=gzip,pimaker-backend-vhm-api
         ## /ClassicUI
         - traefik.http.routers.pimaker-backend-classic.rule=Host(`pimaker.org`) && PathPrefix(`/ClassicUI`)
         - traefik.http.routers.pimaker-backend-classic.entrypoints=websecure
