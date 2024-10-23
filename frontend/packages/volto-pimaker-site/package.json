@@ -32,6 +32,7 @@
     "@eeacms/volto-columns-block",
     "@eeacms/volto-matomo",
     "@kitconcept/volto-slider-block",
+    "volto-form-block",
     "volto-rss-provider"
   ],
   "dependencies": {
@@ -40,6 +41,7 @@
     "@eeacms/volto-columns-block": "*",
     "@eeacms/volto-matomo": "*",
     "@kitconcept/volto-slider-block": "*",
+    "volto-form-block": "*",
     "volto-rss-provider": "*"
   },
   "peerDependencies": {
