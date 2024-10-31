@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layers>
+  <layer name="plone_pimaker_site"
+         remove="true"
+  />
   <layer interface="plone.pimaker_site.interfaces.IBrowserLayer"
          name="plone.pimaker_site"
   />
