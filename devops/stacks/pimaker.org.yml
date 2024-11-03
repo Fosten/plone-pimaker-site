@@ -29,7 +29,7 @@ services:
         # Routers
         ## / (Internal)
         - traefik.http.routers.pimaker-frontend.rule=Host(`pimaker.org`)
-        - traefik.http.routers.pimaker-frontend.entrypoints=websecure
+        - traefik.http.routers.pimaker-frontend.entrypoints=https
         - traefik.http.routers.pimaker-frontend.tls=true
         - traefik.http.routers.pimaker-frontend.tls.certresolver=mydnschallenge
         - traefik.http.routers.pimaker-frontend.service=pimaker-frontend
@@ -70,13 +70,13 @@ services:
         # Routes
         ## /++api++ (Internal)
         - traefik.http.routers.pimaker-backend-api.rule=Host(`pimaker.org`) && (PathPrefix(`/++api++`))
-        - traefik.http.routers.pimaker-backend-api.entrypoints=websecure
+        - traefik.http.routers.pimaker-backend-api.entrypoints=https
         - traefik.http.routers.pimaker-backend-api.tls=true
         - traefik.http.routers.pimaker-backend-api.service=pimaker-backend
         - traefik.http.routers.pimaker-backend-api.middlewares=gzip,pimaker-backend-vhm-api
         ## /ClassicUI
         - traefik.http.routers.pimaker-backend-classic.rule=Host(`pimaker.org`) && PathPrefix(`/ClassicUI`)
-        - traefik.http.routers.pimaker-backend-classic.entrypoints=websecure
+        - traefik.http.routers.pimaker-backend-classic.entrypoints=https
         - traefik.http.routers.pimaker-backend-classic.tls=true
         - traefik.http.routers.pimaker-backend-classic.service=pimaker-backend
         - traefik.http.routers.pimaker-backend-classic.middlewares=gzip,pimaker-backend-auth,pimaker-backend-vhm-classic
