@@ -22,7 +22,7 @@ services:
           - node.labels.type == pimakerapp
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
+        - traefik.swarm.network=traefik-public
         - traefik.constraint-label=traefik-public
         # Service
         - traefik.http.services.testing_pimaker-frontend.loadbalancer.server.port=3000
@@ -56,7 +56,7 @@ services:
           - node.labels.type == pimakerapp
       labels:
         - traefik.enable=true
-        - traefik.docker.network=traefik-public
+        - traefik.swarm.network=traefik-public
         - traefik.constraint-label=traefik-public
         # Services
         - traefik.http.services.testing_pimaker-backend.loadbalancer.server.port=8080
