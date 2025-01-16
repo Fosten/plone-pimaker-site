@@ -17,5 +17,11 @@
     "output": "packages",
     "url": "git@github.com:fosten/volto-home-assistant.git",
     "https": "https://github.com/fosten/volto-home-assistant.git"
+  },
+  "volto-byline": {
+    "develop": true,
+    "output": "packages",
+    "url": "git@github.com:fosten/volto-byline.git",
+    "https": "https://github.com/fosten/volto-byline.git"
   }
 }
