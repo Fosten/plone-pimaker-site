@@ -13,3 +13,4 @@ pnpm-lock.yaml
 /public
 /packages/volto-home-assistant/
 /packages/volto-pimaker-theme/
+/packages/volto-byline/
