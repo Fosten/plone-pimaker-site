@@ -13,6 +13,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- towncrier release notes start -->
 
+# 2.1.0 (2025-03-30)
+
+- Update CHANGELOG.md [fosten]
+- Bump Plone from 6.1.0 to 6.1.1 [fosten]
+- Bump Volto from 18.0.0 to 18.10.1 [fosten]
+- Update check-python-versions from 0.21.3 to 0.22.1 [fosten]
+- Set python_requires to >=3.10 [fosten]
+- Switch from z3c.autoinclude.plugin to plone.autoinclude.plugin [fosten]
+- Bump Plone from 6.0.13 to 6.1.0 [fosten]
+- corepack signature verfication workaround [fosten]
+- Add volto-byline [fosten]
+- Change traefik.docker to traefik.swarm [fosten]
+
+# 2.0.0 (2024-11-02)
+
+- Remove old browserlayer in new install profile [fosten]
+- Add kitconcept.seo and enable for Image type [fosten]
+- Bump Volto from 18.0.0-alpha.42 to 18.0.0 [fosten]
+- Update .eslintrc.js and storybook/main.js [fosten]
+- Add config.resolve.fallback querystring to querystring-es3 [fosten]
+- Add mrs.developer to Dockerfile [fosten]
+- Add volto-rss-provider and rss_provider [fosten]
+- Refactor using cookieplone [fosten]
+- Add towncrier to CHANGELOG.md [fosten]
+
 # 1.2.0 (2024-10-14)
 
 - Update CHANGELOG.md [fosten]
