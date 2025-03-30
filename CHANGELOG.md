@@ -28,9 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # 2.0.0 (2024-11-02)
 
+- Rename traefik entrypoints [fosten]
+- Bump Volto from 18.0.0-alpha.42 to 18.0.0 [fosten]
 - Remove old browserlayer in new install profile [fosten]
 - Add kitconcept.seo and enable for Image type [fosten]
-- Bump Volto from 18.0.0-alpha.42 to 18.0.0 [fosten]
 - Update .eslintrc.js and storybook/main.js [fosten]
 - Add config.resolve.fallback querystring to querystring-es3 [fosten]
 - Add mrs.developer to Dockerfile [fosten]
