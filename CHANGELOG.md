@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add config.resolve.fallback querystring to querystring-es3 [fosten]
 - Add mrs.developer to Dockerfile [fosten]
 - Add volto-rss-provider and rss_provider [fosten]
+- Bump node from 18 to 22 [fosten]
 - Refactor using cookieplone [fosten]
 - Add towncrier to CHANGELOG.md [fosten]
 
