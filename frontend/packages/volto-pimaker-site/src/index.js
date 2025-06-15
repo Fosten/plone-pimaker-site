@@ -6,6 +6,7 @@ const applyConfig = (config) => {
     defaultLanguage: 'en-us',
     matomoSiteId: '3',
     matomoUrlBase: 'https://stats.pimaker.org/',
+    showPloneLogin: false,
     serverConfig: {
       ...config.settings.serverConfig,
       extractScripts: {
