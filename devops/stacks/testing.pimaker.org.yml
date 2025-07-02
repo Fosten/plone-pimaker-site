@@ -80,13 +80,13 @@ services:
         - traefik.http.routers.testing_pimaker-backend-api.entrypoints=https
         - traefik.http.routers.testing_pimaker-backend-api.tls=true
         - traefik.http.routers.testing_pimaker-backend-api.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-backend-api.middlewares=gzip,testing_pimaker-backend-vhm-api
+        - traefik.http.routers.testing_pimaker-backend-api.middlewares=testing_pimaker-backend-vhm-api
         ## /ClassicUI
         - traefik.http.routers.testing_pimaker-backend-classic.rule=Host(`testing.pimaker.org`) && PathPrefix(`/ClassicUI`)
         - traefik.http.routers.testing_pimaker-backend-classic.entrypoints=https
         - traefik.http.routers.testing_pimaker-backend-classic.tls=true
         - traefik.http.routers.testing_pimaker-backend-classic.service=testing_pimaker-backend
-        - traefik.http.routers.testing_pimaker-backend-classic.middlewares=gzip,testing_pimaker-backend-auth,testing_pimaker-backend-vhm-classic
+        - traefik.http.routers.testing_pimaker-backend-classic.middlewares=testing_pimaker-backend-auth,testing_pimaker-backend-vhm-classic
 
 networks:
   traefik-public:
