@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove duplicate gzip middleware declarations [fosten]
 - Add volto-authomatic, pas.plugins.oidc, pas.plugins.keycloakgroups [fosten]
 - Change volto-rss-provider to @plone-collective/volto-rss-provider [fosten]
-- Bump Volto from 18.10.1 to 19.0.0-alpha.3 [fosten]
+- Bump Volto from 18.10.1 to 19.0.0-alpha.4 [fosten]
 
 ## 2.1.0 (2025-03-30)
 
