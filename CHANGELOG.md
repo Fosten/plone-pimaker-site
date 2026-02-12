@@ -15,11 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Bump Plone from 6.1.1 to 6.1.4 [fosten]
 - Bump node from 22 to 24 [fosten]
 - Add `.mxdev_cache` to .gitignore in backend addons [fosten]
 - Update pre-commit version and README.md [fosten]
 - Add footer links to CHANGELOG.md [fosten]
-- Bump Plone from 6.1.1 to 6.1.3 [fosten]
 - Remove duplicate gzip middleware declarations [fosten]
 - Add volto-authomatic, pas.plugins.oidc, pas.plugins.keycloakgroups [fosten]
 - Change volto-rss-provider to @plone-collective/volto-rss-provider [fosten]
