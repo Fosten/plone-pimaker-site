@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Add `.mxdev_cache` to .gitignore in backend addons [fosten]
 - Update pre-commit version and README.md [fosten]
 - Add footer links to CHANGELOG.md [fosten]
 - Bump Plone from 6.1.1 to 6.1.3 [fosten]
