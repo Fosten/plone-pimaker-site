@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `.mxdev_cache` to .gitignore in backend addons [fosten]
 - Update pre-commit version and README.md [fosten]
 - Add footer links to CHANGELOG.md [fosten]
+- Move dependabot.yml to .github folder [fosten]
 - Remove duplicate gzip middleware declarations [fosten]
 - Add volto-authomatic, pas.plugins.oidc, pas.plugins.keycloakgroups [fosten]
 - Change volto-rss-provider to @plone-collective/volto-rss-provider [fosten]
@@ -107,7 +108,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial commit [fosten]
 
-[Unreleased]: https://github.com/Fosten/plone-pimaker-site/compare/2.1.0...main
+[Unreleased]: https://github.com/Fosten/plone-pimaker-site/compare/2.2.0...main
 [2.2.0]: https://github.com/Fosten/plone-pimaker-site/releases/tag/2.2.0
 [2.1.0]: https://github.com/Fosten/plone-pimaker-site/releases/tag/2.1.0
 [2.0.0]: https://github.com/Fosten/plone-pimaker-site/releases/tag/2.0.0
