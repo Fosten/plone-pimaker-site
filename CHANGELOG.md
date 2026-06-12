@@ -16,8 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Remove pnpm-lock.yaml from .gitignore to resolve ButtonsWidget and AlignWidget snapshots mismatch in GHA [fosten]
-- Bump Volto from 19.0.0-alpha.9 to 19.1.1 [fosten]
-- Remove volto-form-block@3.17.1.patch
+- Bump Volto from 19.0.0-alpha.9 to 19.1.4 [fosten]
+- Remove volto-form-block@3.17.1.patch [fosten]
 - Patch volto-form-block to fix the anonymous export in fieldSchema.js [fosten]
 - Bump Plone from 6.1.4 to 6.2.0 [fosten]
 
