@@ -19,7 +19,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.labels.type == pimakerapp
+          - node.labels.type == pimaker13
       labels:
         - traefik.enable=true
         - traefik.swarm.network=traefik-public
@@ -53,7 +53,7 @@ services:
       replicas: 1
       placement:
         constraints:
-          - node.labels.type == pimakerapp
+          - node.labels.type == pimaker13
       labels:
         - traefik.enable=true
         - traefik.swarm.network=traefik-public
