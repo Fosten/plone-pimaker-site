@@ -9,7 +9,7 @@ on:
 env:
   IMAGE_NAME_PREFIX: ghcr.io/fosten/plone-pimaker-site
   IMAGE_NAME_SUFFIX: frontend
-  NODE_VERSION: 24.x
+  NODE_VERSION: 26.x
 
 defaults:
   run:

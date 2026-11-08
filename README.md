@@ -14,7 +14,7 @@ Plone 6 website for PiMaker
 Ensure you have the following installed:
 
 - Python 3.13 🐍
-- Node 24 🟩
+- Node 26 🟩
 - Docker 🐳
 - nvm 🌟
 - pnpm 🧶
