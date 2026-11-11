@@ -1,7 +1,7 @@
 """Installer for the plone.pimaker_site package."""
 
 from pathlib import Path
-from setuptools import find_packages
+from setuptools import find_namespace_packages
 from setuptools import setup
 
 
@@ -43,8 +43,7 @@ setup(
         "Tracker": "https://github.com/fosten/plone.pimaker_site/issues",
     },
     license="GPL version 2",
-    packages=find_packages("src", exclude=["ez_setup"]),
-    namespace_packages=["plone"],
+    packages=find_namespace_packages("src", exclude=["ez_setup"]),
     package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
