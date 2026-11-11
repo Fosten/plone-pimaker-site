@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump Volto from 19.0.0-alpha.9 to 19.7.0 [fosten]
 - Remove volto-form-block@3.17.1.patch [fosten]
 - Patch volto-form-block to fix the anonymous export in fieldSchema.js [fosten]
-- Bump Plone from 6.1.4 to 6.2.2 [fosten]
+- Bump Plone from 6.1.4 to 6.2.3 [fosten]
 
 ## [2.2.0] (2026-02-12)
 
