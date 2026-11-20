@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Bump volto-authomatic from 3.0.0-alpha.1 to 3.1.0, pas.plugins.oidc from 2.0.0 to 2.1.0 [fosten]
 - Fix Plone namespace package handling [fosten]
 - Unpin plone.autoinclude [fosten]
 - Bump node from 24 to 26 [fosten]

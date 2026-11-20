@@ -62,7 +62,7 @@ setup(
         "eea.banner",
         "rss_provider",
         "kitconcept.seo",
-        "pas.plugins.oidc==2.0.0",
+        "pas.plugins.oidc==2.1.0",
         "pas.plugins.keycloakgroups==1.0.0b1",
     ],
     extras_require={
